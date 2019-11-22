@@ -4,10 +4,10 @@ In addition to amino acid sequence, protein folding in cells depends on cellular
 
 **This repository contains scripts used in the analysis**
 
-### Order of procedure:
+# Order of procedure:
 1) **Download [data](https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz) from PDB.** This is a text file with chain IDs, amino acid sequences and secondary structure sequences for all residues available on PBD.
 2) **Replace all " " in data file with "C".** PDB file has " " in positions with no stable structures (or coils). We replace these empty spaces with "C" so that later procedures work better and recognize the coil structueres properly.
-3) **Create text files with sequence IDs for your databases.** Example of such file is [01_example_sequences_IDs](examples/01_example_sequences_IDs) in examples folder.
+3) **Create text files with sequence IDs for your databases.** Example of such file is [01_example_sequences_IDs](examples/01_example_sequences_IDs.txt) in examples folder.
 4) **Create database files using [DAMBE](http://dambe.bio.uottawa.ca/DAMBE/dambe.aspx) or use our files from databases folder.** Databases are in format:
 
 |     |
