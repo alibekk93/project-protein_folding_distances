@@ -7,14 +7,13 @@ In addition to amino acid sequence, protein folding in cells depends on cellular
 # Order of procedure:
 1) **Download [data](https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz) from PDB.** This is a text file with chain IDs, amino acid sequences and secondary structure sequences for all residues available on PBD.
 2) **Replace all " " in data file with "C".** PDB file has " " in positions with no stable structures (or coils). We replace these empty spaces with "C" so that later procedures work better and recognize the coil structueres properly.
-3) **Create text files with sequence IDs for your databases.** Example of such file is [01_example_sequences_IDs](examples/01_example_sequences_IDs.txt) in examples folder.
-4) **Create database files using [DAMBE](http://dambe.bio.uottawa.ca/DAMBE/dambe.aspx) or use our files from databases folder.** Databases are in format:
-
-|     |
-| --- |
-| >sequence_ID |
-| AA_line |
-| >sequence_ID |
-| SS_line |
-
-4) 
+3) **Run [00_data_processing](scripts/00_data_processing.py) script to create a csv file with AA and SS sequences in a table format.** This file will be used later to create count matrices. The script requires 3 arguments:
+    1. Path to your ss.txt file
+    2. Path to your output csv file
+    3. Number of lines in your ss.txt file. The file is large, so it is better to input it manualy.
+4) **Create text files with sequence IDs for your databases.** Example of such file is [01_example_sequences_IDs](examples/01_example_sequences_IDs.txt) in examples folder.
+5) **Create database files using [DAMBE](http://dambe.bio.uottawa.ca/DAMBE/dambe.aspx) or use our files from databases folder.** Databases are in fasta format and are separate for AA and SS sequences. Examples of such files are [02_example_AA_fasta](examples/02_example_AA_fasta.FAS) and [02_example_SS_fasta](examples/02_example_SS_fasta.FAS) in examples folder.
+6) **Remove duplicates from your AA sequences file and create a BLAST database from it.** You can use DAMBE or some other software for that. An example of a file with no duplicates is [03_example_AA_unique](examples/03_example_AA_unique.FAS) in examples folder.
+7) **BLAST your database against another AA_sequence_IDs file.** You can use DAMBE or some other software for that. An example of a csv file with BLAST results is [04_example_BLAST](examples/04_example_BLAST.csv) in examples folder.
+8) **Create trHMM files from BLAST results using [01_trHMM_from_BLAST](scripts/01_trHMM_from_BLAST.py) script.** This will also create a filtered BLAST table. An example of a csv file with filtered BLAST results is [05_example_BLAST_filtered](examples/05_example_BLAST_filtered.csv) in examples folder. The main output is a trHMM file that has concantenated strings of AA and SS sequences for count matrix creation. An example of a trHMM file is [06_example_trHMM](examples/06_example_trHMM.trHMM) in examples folder.
+9) **Create full count matrices using [02_full_matrix_creator](scripts/02_full_matrix_creator.py) script.** This will output count matrices for each AA / SS position in the trHMM file. An example of a count matrix is [07_example_count_matrix](examples/07_example_count_matrix.csv) in examples folder.
