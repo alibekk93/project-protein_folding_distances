@@ -25,3 +25,26 @@ The notebook can work in one session or in multiple sessions with intermediate f
 2) 3-SS:
 
 ![3-SS_KLD](results/KLD_boxplots/08_KLD_split_3.png)
+
+**Heatmaps of SS changes**
+1) 8-SS:
+
+![8-SS_BS](results/heatmaps/8-SS/10_Bsubtilis_KL_divergence_8.png)
+![8-SS_DV](results/heatmaps/8-SS/10_Dvulgaris_KL_divergence_8.png)
+![8-SS_LL](results/heatmaps/8-SS/10_Llactis_KL_divergence_8.png)
+![8-SS_PF](results/heatmaps/8-SS/10_Pfluorescens_KL_divergence_8.png)
+![8-SS_PP](results/heatmaps/8-SS/10_Pputida_KL_divergence_8.png)
+![8-SS_SE](results/heatmaps/8-SS/10_Senterica_KL_divergence_8.png)
+![8-SS_SR](results/heatmaps/8-SS/10_Srubiginosus_KL_divergence_8.png)
+![8-SS_TT](results/heatmaps/8-SS/10_Tthermophilus_KL_divergence_8.png)
+
+2) 3-SS:
+
+![3-SS_BS](results/heatmaps/3-SS/10_Bsubtilis_KL_divergence_3.png)
+![3-SS_DV](results/heatmaps/3-SS/10_Dvulgaris_KL_divergence_3.png)
+![3-SS_LL](results/heatmaps/3-SS/10_Llactis_KL_divergence_3.png)
+![3-SS_PF](results/heatmaps/3-SS/10_Pfluorescens_KL_divergence_3.png)
+![3-SS_PP](results/heatmaps/3-SS/10_Pputida_KL_divergence_3.png)
+![3-SS_SE](results/heatmaps/3-SS/10_Senterica_KL_divergence_3.png)
+![3-SS_SR](results/heatmaps/3-SS/10_Srubiginosus_KL_divergence_3.png)
+![3-SS_TT](results/heatmaps/3-SS/10_Tthermophilus_KL_divergence_3.png)
