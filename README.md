@@ -9,12 +9,17 @@ In addition to amino acid sequence, protein folding in cells depends on cellular
 # Order of procedure:
 1) **Download [data](https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz) from PDB.** This is a text file with chain IDs, amino acid sequences and secondary structure sequences for all residues available on PBD.
 2) **Replace all " " in data file with "C".** PDB file has " " in positions with no stable structures (or coils). We replace these empty spaces with "C" so that later procedures work better and recognize the coil structueres properly.
-3) **Run the [colab notebook](scripts/SS_and_expression_systems_v1.ipynb) with the scripts.** This file contains information on how it works. In case that the first step (data preprocessing) takes too long, you can use [00_data_processing](scripts/00_data_processing.py) script instead and load the resulting file into the notebook on the next stage. The 00_data_processing script requires 3 arguments:
+3) **Run a BLASTp to obtain a table with similar proteins with same source organism and different expression systems.** This can be done differently, here is the way we did it:
+    1. Create files with PDB IDs for each protein source organism / expression system pair. An [example](examples/01_example_sequences_IDs.txt) of such file is provided.
+    2. Create database files using [DAMBE](http://dambe.bio.uottawa.ca/DAMBE/dambe.aspx) or use our files from [databases](databases/) folder. Databases are in fasta format and contain AA sequences. In our case, they are separated for different protein expression systems, but share the protein source. One of these files will be used as a query and another as a database for BLASTp. Examples of such files are [02_example1_fasta](examples/02_example1_fasta.FAS) and [02_example2_fasta](examples/02_example2_fasta.FAS) in examples folder.
+    3. Remove duplicates from one of the database files and create a BLASTp database from it. You can use DAMBE or some other software for that. An example of a file with no duplicates is [03_example_AA_unique](examples/03_example_AA_unique.FAS) in examples folder.
+    4. BLASTp your database against the other database file (used as query). You can use DAMBE or some other software for that. An example of a csv file with BLASTp results is [04_example_BLAST](examples/04_example_BLAST.csv) in examples folder.
+4) **Run the [colab notebook](scripts/SS_and_expression_systems_v1.ipynb) with the scripts.** This file contains information on how it works. In case that the first step (data preprocessing) takes too long, you can use [00_data_processing](scripts/00_data_processing.py) script instead and load the resulting file into the notebook on the next stage. The 00_data_processing script requires 3 arguments:
     1. Path to your ss.txt file
     2. Path to your output csv file
     3. Number of lines in your ss.txt file. The file is large, so it is better to input it manualy.
 
-The notebook can work in one session or in multiple sessions with intermediate files being saved and loaded into the notebook later to continue from the same point. Examples of the intermediate files are available in the [examples](examples) folder.
+The notebook can work in one session or in multiple sessions with intermediate files being saved and loaded into the notebook later to continue from the same point. Examples of the intermediate files are available in the [intermediate_files](results/intermediate_files/) folder.
 
 # Our results:
 **KLD boxplots**
