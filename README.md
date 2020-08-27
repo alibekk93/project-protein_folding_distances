@@ -13,4 +13,11 @@ In addition to amino acid sequence, protein folding in cells depends on cellular
     1. Path to your ss.txt file
     2. Path to your output csv file
     3. Number of lines in your ss.txt file. The file is large, so it is better to input it manualy.
+
 The notebook can work in one session or in multiple sessions with intermediate files being saved and loaded into the notebook later to continue from the same point. Examples of the intermediate files are available in the [examples](examples) folder.
+
+# Our results:
+**Split data boxplots**
+1) 8-SS:
+
+2) 3-SS:
