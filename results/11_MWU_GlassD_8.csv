@@ -1,0 +1,17 @@
+,A,B,Direction,Absolute Glass Δ
+12,D. vulgaris,T. thermophilus,<,6.5657486210125295
+24,P. putida,T. thermophilus,<,5.6047232929228805
+27,S. rubiginosus,T. thermophilus,<,5.015441949396011
+6,B. subtilis,T. thermophilus,<,4.590631119267947
+26,S. enterica,T. thermophilus,<,4.549094194456428
+17,L. lactis,T. thermophilus,<,4.00037902544291
+21,P. fluorescens,T. thermophilus,<,2.827933950220967
+8,D. vulgaris,P. fluorescens,<,1.5197828505823097
+18,P. fluorescens,P. putida,>,1.4576112952266804
+20,P. fluorescens,S. rubiginosus,>,1.1921363503948348
+19,P. fluorescens,S. enterica,>,0.8913203464021986
+3,B. subtilis,P. putida,>,0.7175261535721451
+5,B. subtilis,S. rubiginosus,>,0.5194582784626277
+22,P. putida,S. enterica,<,0.44704982918043695
+25,S. enterica,S. rubiginosus,>,0.2604794977668399
+9,D. vulgaris,P. putida,>,0.2537541810657772
