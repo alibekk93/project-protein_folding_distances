@@ -19,6 +19,9 @@ The notebook can work in one session or in multiple sessions with intermediate f
 # Our results:
 **KLD boxplots**
 1) 8-SS:
+
 ![8-SS_KLD](results/KLD_boxplots/08_KLD_split_8.png)
+
 2) 3-SS:
+
 ![3-SS_KLD](results/KLD_boxplots/08_KLD_split_3.png)
