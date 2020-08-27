@@ -1,21 +1,50 @@
 # Abstract
 
-In addition to amino acid sequence, protein folding in cells depends on cellular environment, in-cluding chaperone proteins, cytoplasmic pH, temperature and ionic concentrations. Different or-ganisms, especially extremophiles, often have dissimilar cellular environments. Protein secondary structure identification methods regularly do not have these interspecific differences taken into consideration. As a result of that, known secondary structures determined for proteins from diverse organisms are often used for predictive methods training. Moreover, many protein structure studies use E. coli and other model organisms as expression systems for other species’ genes without considering of cellular environment factors. In order to assess the effect of species-specific factors, we analyzed protein folding in different cellular environments. During this study separate count matrices were created using structures of proteins with E. coli as expression system and compared with those with expression systems same as protein source organisms. Differences between count matrices from different models were quantified using Euclidean distances. Distances between the two T. thermophilus matrices were larger and more variable than those of non-thermophilic spe-cies. Moreover, we found directionality in this distance as helical secondary structures were more likely to form in T. thermophilus as expression system than in E. coli, where coil structures were formed instead. Our results suggest that extremophile protein source organisms should be used as protein expression systems in structural studies due to protein folding dependence on species-specific factors, such as environmental conditions and / or chaperone activity.
+In addition to amino acid sequence, protein folding in cells depends on cellular environment factors, such as chaperone proteins, cytoplasmic pH, temperature and ionic concentrations. This means that different organisms with dissimilar cellular environments, such as extremophiles, may not have the native protein structures when they are expressed in mesophilic model organisms, such as *Escherichia coli*. Protein secondary structure identification methods regularly do not have these interspecific differences taken into consideration. As a result of that, known secondary structures determined for proteins from diverse organisms are often used for predictive methods training. Moreover, many protein structure studies use *E. coli* and other model organisms as expression systems for other species’ genes without considering potentially different cellular protein-folding environments. In order to assess the effect of species-specific factors, we analyzed protein folding in different cellular environments. During this study separate count matrices were created using structures of proteins with *E. coli* as expression system and compared with those with expression systems same as protein source organisms. Differences between count matrices from different models were quantified using Kullback–Leibler divergence. The two *Thermus thermophilus* matrices had larger and more variable divergencies between them than those of non-thermophilic species. Moreover, we found directionality in this distance as helical secondary structures were more likely to form in *T. thermophilus* as expression system than in *E. coli*, where coil structures were formed instead. Our results suggest that extremophile protein source organisms should be used as protein expression systems in structural studies due to protein folding dependence on species-specific factors, such as environmental conditions and / or chaperone activity.
 
-**This repository contains scripts used in the analysis**
+**Key Words:** *protein folding, protein secondary structure, chaperones, extremophile bacteria*
+
+**This repository contains scripts used in the analysis, examples of files used and our results**
 
 # Order of procedure:
 1) **Download [data](https://cdn.rcsb.org/etl/kabschSander/ss.txt.gz) from PDB.** This is a text file with chain IDs, amino acid sequences and secondary structure sequences for all residues available on PBD.
 2) **Replace all " " in data file with "C".** PDB file has " " in positions with no stable structures (or coils). We replace these empty spaces with "C" so that later procedures work better and recognize the coil structueres properly.
-3) **Run [00_data_processing](scripts/00_data_processing.py) script to create a csv file with AA and SS sequences in a table format.** This file will be used later to create count matrices. The script requires 3 arguments:
+3) **Run the [colab notebook](scripts/SS_and_expression_systems_v1.ipynb) with the scripts.** This file contains information on how it works. In case that the first step (data preprocessing) takes too long, you can use [00_data_processing](scripts/00_data_processing.py) script instead and load the resulting file into the notebook on the next stage. The 00_data_processing script requires 3 arguments:
     1. Path to your ss.txt file
     2. Path to your output csv file
     3. Number of lines in your ss.txt file. The file is large, so it is better to input it manualy.
-4) **Create text files with sequence IDs for your databases.** Example of such file is [01_example_sequences_IDs](examples/01_example_sequences_IDs.txt) in examples folder.
-5) **Create database files using [DAMBE](http://dambe.bio.uottawa.ca/DAMBE/dambe.aspx) or use our files from databases folder.** Databases are in fasta format and contain AA sequences. In our case, they are separate for different protein expression systems. Examples of such files are [02_example1_fasta](examples/02_example1_fasta.FAS) and [02_example2_fasta](examples/02_example2_fasta.FAS) in examples folder.
-6) **Remove duplicates from your AA sequences file and create a BLAST database from it.** You can use DAMBE or some other software for that. An example of a file with no duplicates is [03_example_AA_unique](examples/03_example_AA_unique.FAS) in examples folder.
-7) **BLAST your database against another AA_sequence_IDs file.** You can use DAMBE or some other software for that. An example of a csv file with BLAST results is [04_example_BLAST](examples/04_example_BLAST.csv) in examples folder.
-8) **Create trHMM files from BLAST results using [01_trHMM_from_BLAST](scripts/01_trHMM_from_BLAST.py) script.** This will also create a filtered BLAST table. An example of a csv file with filtered BLAST results is [05_example_BLAST_filtered](examples/05_example_BLAST_filtered.csv) in examples folder. The main output is a trHMM file that has concantenated strings of AA and SS sequences for count matrix creation. An example of a trHMM file is [06_example_trHMM](examples/06_example_trHMM.trHMM) in examples folder.
-9) **Create full count matrices using [02_full_matrix_creator](scripts/02_full_matrix_creator.py) script.** This will output count matrices for each AA / SS position in the trHMM file. Examples of count matrices are [07_example_count_matrix1](examples/07_example_count_matrix1.csv) and [07_example_count_matrix2](examples/07_example_count_matrix2.csv) in examples folder.
-10) **Calculate distances between matrices using [03_matrix_compare_individual](scripts/03_matrix_compare_individual.py).** This will result with a heat map of differences between 2 matrices. An example figure is [example_figure](examples/example_figure.png) in the examples folder.
-11) **You can also split trHMM files and calculate matrix distances between split files using [04_split_trHMM](scripts/04_split_trHMM.py) and [05_distances_stats](scripts/05_distances_stats.py) scripts.** This creates boxplots and performs statistical analysis on calculated distances. An example of a [boxplot](examples/example_boxplot.png) is available in the examples folder. Distances of the splits would be exported to a csv file, an [example](examples_08_example_distances.csv) of which is also available.
+
+The notebook can work in one session or in multiple sessions with intermediate files being saved and loaded into the notebook later to continue from the same point. Examples of the intermediate files are available in the [examples](examples) folder.
+
+# Our results:
+**KLD boxplots**
+1) 8-SS:
+
+![8-SS_KLD](results/KLD_boxplots/08_KLD_split_8.png)
+
+2) 3-SS:
+
+![3-SS_KLD](results/KLD_boxplots/08_KLD_split_3.png)
+
+**Heatmaps of SS changes**
+1) 8-SS:
+
+![8-SS_BS](results/heatmaps/8-SS/10_Bsubtilis_KL_divergence_8.png)
+![8-SS_DV](results/heatmaps/8-SS/10_Dvulgaris_KL_divergence_8.png)
+![8-SS_LL](results/heatmaps/8-SS/10_Llactis_KL_divergence_8.png)
+![8-SS_PF](results/heatmaps/8-SS/10_Pfluorescens_KL_divergence_8.png)
+![8-SS_PP](results/heatmaps/8-SS/10_Pputida_KL_divergence_8.png)
+![8-SS_SE](results/heatmaps/8-SS/10_Senterica_KL_divergence_8.png)
+![8-SS_SR](results/heatmaps/8-SS/10_Srubiginosus_KL_divergence_8.png)
+![8-SS_TT](results/heatmaps/8-SS/10_Tthermophilus_KL_divergence_8.png)
+
+2) 3-SS:
+
+![3-SS_BS](results/heatmaps/3-SS/10_Bsubtilis_KL_divergence_3.png)
+![3-SS_DV](results/heatmaps/3-SS/10_Dvulgaris_KL_divergence_3.png)
+![3-SS_LL](results/heatmaps/3-SS/10_Llactis_KL_divergence_3.png)
+![3-SS_PF](results/heatmaps/3-SS/10_Pfluorescens_KL_divergence_3.png)
+![3-SS_PP](results/heatmaps/3-SS/10_Pputida_KL_divergence_3.png)
+![3-SS_SE](results/heatmaps/3-SS/10_Senterica_KL_divergence_3.png)
+![3-SS_SR](results/heatmaps/3-SS/10_Srubiginosus_KL_divergence_3.png)
+![3-SS_TT](results/heatmaps/3-SS/10_Tthermophilus_KL_divergence_3.png)
