@@ -17,7 +17,8 @@ In addition to amino acid sequence, protein folding in cells depends on cellular
 The notebook can work in one session or in multiple sessions with intermediate files being saved and loaded into the notebook later to continue from the same point. Examples of the intermediate files are available in the [examples](examples) folder.
 
 # Our results:
-**Split data boxplots**
+**KLD boxplots**
 1) 8-SS:
-
+![8-SS_KLD](results/KLD_boxplots/08_KLD_split_8.png)
 2) 3-SS:
+![3-SS_KLD](results/KLD_boxplots/08_KLD_split_3.png)
