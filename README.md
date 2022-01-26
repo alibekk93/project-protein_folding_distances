@@ -41,4 +41,4 @@ The notebook can work in one session or in multiple sessions with intermediate f
 
 2) 3-SS:
 
-![Heatmaps3_all](results/graphics/Heatmaps_all.jpg)
+![Heatmaps3_all](results/graphics/Heatmaps3_all.jpg)
